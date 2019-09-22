@@ -20,6 +20,7 @@ steps:
     mv firefox* source
     ls
     cd source
+    sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
     sudo apt-get update
     sudo apt-get upgrade
     sudo apt-get build-dep firefox
