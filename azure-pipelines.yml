@@ -21,7 +21,8 @@ steps:
     rm *.xz
     mv firefox* source
     ls
-    touch mozconfig
+    cd source
+    ./mach build
 
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
