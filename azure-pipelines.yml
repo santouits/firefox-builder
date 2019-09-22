@@ -16,7 +16,11 @@ steps:
 - script: |
     wget -q https://ftp.mozilla.org/pub/firefox/releases/69.0.1/source/firefox-69.0.1.source.tar.xz
     tar -xf firefox*
+    rm *.xz
+    mv firefox* source
     ls
+    touch mozconfig
+    
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
