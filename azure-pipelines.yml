@@ -30,7 +30,25 @@ jobs:
       sudo ln -sf /usr/bin/clang-9 /usr/bin/clang
       sudo ln -sf /usr/bin/clang++-9 /usr/bin/clang++
       ./mach build
+      ls firefox-build-dir
+      ls firefox-build-dir/dist
+      ./mach package
 
       echo Add other tasks to build, test, and deploy your project.
       echo See https://aka.ms/yaml
     displayName: 'build firefox'
+
+  - task: CopyFiles@2
+    inputs:
+      contents: 'source/firefox-build-dir/dist/*'
+      targetFolder: $(Build.ArtifactStagingDirectory)
+
+  - task: GitHubRelease@0
+    inputs:
+      gitHubConnection: for-firefox-release
+      repositoryName: santouits/firefox-builder
+      tagSource: manual
+      tag: $(Build.BuildNumber)
+      addChangeLog: false
+      assets: $(Build.ArtifactStagingDirectory)/**
+    displayName: 'create_github_release'
