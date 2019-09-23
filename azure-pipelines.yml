@@ -8,9 +8,9 @@ steps:
 - script: |
     export SHELL=/bin/bash
     export MOZCONFIG="$(pwd)/mozconfig"
-    export CFLAGS="-march=native -mtune=native -O3"
-    export CXXFLAGS="-march=native -mtune=native -O3"
-    export RUSTFLAGS="-Copt-level=3 -Ctarget-cpu=native"
+    export CFLAGS="-march=btver1 -mtune=btver1 -O3"
+    export CXXFLAGS="-march=btver1 -mtune=btver1 -O3"
+    export RUSTFLAGS="-Copt-level=3 -Ctarget-cpu=btver1"
     echo $MOZCONFIG
     wget -q https://ftp.mozilla.org/pub/firefox/releases/69.0.1/source/firefox-69.0.1.source.tar.xz
     tar -xf firefox*
