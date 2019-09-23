@@ -1,19 +1,24 @@
-
-
-ac_add_options --disable-necko-wifi
-
-ac_add_options --enable-official-branding
-
-ac_add_options --disable-debug-symbols
-
 ac_add_options --enable-application=browser
 
+# Optimizations
+#ac_add_options --enable-profile-generate
+ac_add_options --disable-release
+ac_add_options --enable-lto=full
+#ac_add_options --enable-optimize="-O3 -march=btver1 -mtune=btver1 -flto=full"
+ac_add_options --disable-debug
+ac_add_options --disable-rust-debug
+ac_add_options --disable-debug-symbols
+
+# Reducing time
+ac_add_options --disable-tests
+
+# Personalizations
 ac_add_options --disable-crashreporter
 ac_add_options --disable-updater
 
-ac_add_options --disable-tests
-
-ac_add_options --enable-optimize
+# Other
+ac_add_options --disable-necko-wifi
+ac_add_options --enable-official-branding
 
 unset MOZ_TELEMETRY_REPORTING
 
