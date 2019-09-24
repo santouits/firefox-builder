@@ -1,5 +1,7 @@
 ac_add_options --enable-application=browser
 
+mk_add_options MOZ_MAKE_FLAGS="-j1"
+
 # Optimizations
 #ac_add_options --enable-profile-generate
 #ac_add_options --disable-release
