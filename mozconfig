@@ -2,7 +2,7 @@ ac_add_options --enable-application=browser
 
 # Optimizations
 #ac_add_options --enable-profile-generate
-ac_add_options --disable-release
+#ac_add_options --disable-release
 ac_add_options --enable-lto=full
 #ac_add_options --enable-optimize="-O3 -march=btver1 -mtune=btver1 -flto=full"
 ac_add_options --disable-debug
