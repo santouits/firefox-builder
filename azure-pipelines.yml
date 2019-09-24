@@ -12,9 +12,9 @@ jobs:
   - script: |
       export SHELL=/bin/bash
       export MOZCONFIG="$(pwd)/mozconfig"
-      export CFLAGS="-march=btver1 -mtune=btver1 -O3 -flto=full"
-      export CXXFLAGS="-march=btver1 -mtune=btver1 -O3 -flto=full"
-      export LDFLAGS="-march=btver1 -mtune=btver1 -O3 -flto=full"
+      export CFLAGS="-march=btver1 -mtune=btver1 -O3"
+      export CXXFLAGS="-march=btver1 -mtune=btver1 -O3"
+      export LDFLAGS="-march=btver1 -mtune=btver1 -O3"
       export RUSTFLAGS="-Copt-level=3 -Ctarget-cpu=btver1"
       export CARGO_RUSTCFLAGS="-Copt-level=3 -Ctarget-cpu=btver1"
 
