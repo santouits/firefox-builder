@@ -22,10 +22,10 @@ jobs:
       echo "Starting script"
       ###swap
       sudo mkdir -p /mnt/resource
-      sudo fallocate -l 5g /mnt/resource/swap5g
-      sudo chmod 600 /mnt/resource/swap5g
-      sudo mkswap /mnt/resource/swap5g
-      sudo swapon /mnt/resource/swap5g
+      sudo fallocate -l 15g /mnt/resource/swap15g
+      sudo chmod 600 /mnt/resource/swap15g
+      sudo mkswap /mnt/resource/swap15g
+      sudo swapon /mnt/resource/swap15g
       cat /proc/swaps
 
       # Install build tools and dependencies
