@@ -34,9 +34,9 @@ jobs:
       #sudo ln -sf /usr/bin/gcc-ar-9 /usr/bin/gcc-ar
       #sudo ln -sf /usr/bin/gcc-nm-9 /usr/bin/gcc-nm
       #sudo ln -sf /usr/bin/gcc-ranlib-9 /usr/bin/gcc-ranlib
-      #sudo ln -sf /usr/bin/gcc-ar-9 /usr/bin/ar
+      sudo ln -sf /usr/bin/gcc-ar-9 /usr/bin/ar
       #sudo ln -sf /usr/bin/gcc-nm-9 /usr/bin/nm
-      #sudo ln -sf /usr/bin/gcc-ranlib-9 /usr/bin/ranlib
+      sudo ln -sf /usr/bin/gcc-ranlib-9 /usr/bin/ranlib
 
       # Set environment variables
       export SHELL=/bin/bash
