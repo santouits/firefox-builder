@@ -10,6 +10,24 @@ jobs:
   cancelTimeoutInMinutes: 360
   steps:
   - script: |
+      echo "RAM"
+      free -h
+      echo "disks"
+      df -h
+      echo "cpu"
+      cat /proc/cpuinfo
+      echo "root directory"
+      ls /
+
+      echo "Starting script"
+      ###swap
+      sudo mkdir -p /mnt/resource
+      sudo fallocate -l 5g /mnt/resource/swap5g
+      sudo chmod 600 /mnt/resource/swap5g
+      sudo mkswap /mnt/resource/swap5g
+      sudo swapon /mnt/resource/swap5g
+      cat /proc/swaps
+
       # Install build tools and dependencies
       wget -q https://ftp.mozilla.org/pub/firefox/releases/69.0.1/source/firefox-69.0.1.source.tar.xz
       tar -xf firefox*
@@ -57,8 +75,9 @@ jobs:
       ./mach package
       ls firefox-build-dir/dist
 
-      echo Add other tasks to build, test, and deploy your project.
-      echo See https://aka.ms/yaml
+      free -h
+      df -h
+
     displayName: 'build firefox'
 
   - task: CopyFiles@2
