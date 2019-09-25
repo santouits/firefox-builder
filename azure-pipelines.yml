@@ -27,6 +27,8 @@ jobs:
       sudo mkswap /mnt/resource/swap15g
       sudo swapon /mnt/resource/swap15g
       cat /proc/swaps
+      free -h
+      df -h
 
       # Install build tools and dependencies
       wget -q https://ftp.mozilla.org/pub/firefox/releases/69.0.1/source/firefox-69.0.1.source.tar.xz
