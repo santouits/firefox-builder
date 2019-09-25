@@ -35,7 +35,7 @@ jobs:
 
       # Set environment variables
       export SHELL=/bin/bash
-      export MOZCONFIG="$(pwd)/mozconfig"
+      export MOZCONFIG="$(pwd)/../mozconfig"
       echo $MOZCONFIG
       #export CFLAGS="-march=btver1 -mtune=btver1 -O3"
       #export CXXFLAGS="-march=btver1 -mtune=btver1 -O3"
