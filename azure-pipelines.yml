@@ -10,15 +10,7 @@ jobs:
   cancelTimeoutInMinutes: 360
   steps:
   - script: |
-      export SHELL=/bin/bash
-      export MOZCONFIG="$(pwd)/mozconfig"
-      #export CFLAGS="-march=btver1 -mtune=btver1 -O3"
-      #export CXXFLAGS="-march=btver1 -mtune=btver1 -O3"
-      #export LDFLAGS="-march=btver1 -mtune=btver1 -O3"
-      #export RUSTFLAGS="-Copt-level=3 -Ctarget-cpu=btver1"
-      #export CARGO_RUSTCFLAGS="-Copt-level=3 -Ctarget-cpu=btver1"
-
-      echo $MOZCONFIG
+      # Install build tools and dependencies
       wget -q https://ftp.mozilla.org/pub/firefox/releases/69.0.1/source/firefox-69.0.1.source.tar.xz
       tar -xf firefox*
       rm *.xz
@@ -27,13 +19,34 @@ jobs:
       sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
       sudo sh -c "echo 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-9 main' >> /etc/apt/sources.list"
       sudo add-apt-repository ppa:jonathonf/nasm
+      sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
       sudo apt-get -qq update
-      sudo apt-get -qq install lld-9 clang-9 clang++-9 libllvm9 llvm-9 llvm-9-dev nasm autoconf2.13 build-essential nodejs python-dev python-pip python-setuptools unzip uuid zip
+      sudo apt-get -qq install g++-9 lld-9 clang-9 clang++-9 libllvm9 llvm-9 llvm-9-dev nasm autoconf2.13 build-essential nodejs python-dev python-pip python-setuptools unzip uuid zip
       sudo apt-get -qq install libpulse-dev libasound2-dev libcurl4-openssl-dev libdbus-1-dev libdbus-glib-1-dev libgtk-3-dev libgtk2.0-dev libpulse-dev libx11-xcb-dev libxt-dev python-dbus xvfb yasm
       sudo ln -sf /usr/bin/clang-9 /usr/bin/clang
       sudo ln -sf /usr/bin/clang++-9 /usr/bin/clang++
       sudo ln -sf /usr/bin/llvm-ar-9 /usr/bin/ar
       sudo ln -sf /usr/bin/llvm-ranlib-9 /usr/bin/ranlib
+      sudo ln -s /usr/bin/gcc-9 gcc
+      sudo ln -s /usr/bin/g++-9 g++
+      sudo ln -s /usr/bin/gcc-ar gcc-ar-9
+      sudo ln -s /usr/bin/gcc-ranlib gcc-ranlib-9
+      sudo ln -s /usr/bin/gcc-nm gcc-nm-9
+
+      # Set environment variables
+      export SHELL=/bin/bash
+      export MOZCONFIG="$(pwd)/mozconfig"
+      echo $MOZCONFIG
+      #export CFLAGS="-march=btver1 -mtune=btver1 -O3"
+      #export CXXFLAGS="-march=btver1 -mtune=btver1 -O3"
+      #export LDFLAGS="-march=btver1 -mtune=btver1 -O3"
+      #export RUSTFLAGS="-Copt-level=3 -Ctarget-cpu=btver1"
+      #export CARGO_RUSTCFLAGS="-Copt-level=3 -Ctarget-cpu=btver1"
+      export CC=gcc
+      export CXX=g++
+      export RANLIB=gcc-ranlib
+      export NM=gcc-nm
+
       ./mach build
       ls firefox-build-dir
       ./mach package
