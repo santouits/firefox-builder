@@ -14,10 +14,11 @@ jobs:
       free -h
       echo "disks"
       df -h
-      echo "cpu"
-      cat /proc/cpuinfo
       echo "root directory"
       ls /
+
+      df -h .
+      df -Ph . | tail -1 | awk '{print $4}'
 
       echo "Starting script"
       ###swap
@@ -42,7 +43,8 @@ jobs:
       sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
       sudo apt-get -qq update
       #sudo apt-get -qq install g++-9 lld-9 clang-9 clang++-9 libllvm9 llvm-9 llvm-9-dev nasm autoconf2.13 build-essential nodejs python-dev python-pip python-setuptools unzip uuid zip
-      sudo apt remove mono*
+      sudo apt remove mono* *llvm* *clang*
+      sudo apt autoremove
       sudo apt-get -qq install g++-9 nasm autoconf2.13 build-essential nodejs python-dev python-pip python-setuptools unzip uuid zip
       sudo apt-get -qq install libpulse-dev libasound2-dev libcurl4-openssl-dev libdbus-1-dev libdbus-glib-1-dev libgtk-3-dev libgtk2.0-dev libpulse-dev libx11-xcb-dev libxt-dev python-dbus xvfb yasm
 
@@ -90,13 +92,13 @@ jobs:
       contents: '*.tar.bz2'
       targetFolder: $(Build.ArtifactStagingDirectory)
 
-  - task: GitHubRelease@0
-    inputs:
-      action: create
-      gitHubConnection: for-firefox-release
-      repositoryName: santouits/firefox-builder
-      tagSource: manual
-      tag: $(Build.BuildNumber)
-      addChangeLog: false
-      assets: $(Build.ArtifactStagingDirectory)/**
-    displayName: 'create_github_release'
+      #- task: GitHubRelease@0
+      #inputs:
+      #action: create
+      #gitHubConnection: for-firefox-release
+      #repositoryName: santouits/firefox-builder
+      #tagSource: manual
+      #tag: $(Build.BuildNumber)
+      #addChangeLog: false
+      #assets: $(Build.ArtifactStagingDirectory)/**
+      #displayName: 'create_github_release'
