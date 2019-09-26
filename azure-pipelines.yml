@@ -30,15 +30,6 @@ jobs:
       cat /etc/cgrules.conf
 
       echo "Starting script"
-      ###swap
-      #sudo mkdir -p /mnt/resource
-      #sudo fallocate -l 15g /mnt/resource/swap15g
-      #sudo chmod 600 /mnt/resource/swap15g
-      #sudo mkswap /mnt/resource/swap15g
-      #sudo swapon /mnt/resource/swap15g
-      #cat /proc/swaps
-      #free -h
-      #df -h
 
       # Install build tools and dependencies
       wget -q https://ftp.mozilla.org/pub/firefox/releases/69.0.1/source/firefox-69.0.1.source.tar.xz
@@ -57,17 +48,12 @@ jobs:
 
       #sudo ln -sf /usr/bin/clang-9 /usr/bin/clang
       #sudo ln -sf /usr/bin/clang++-9 /usr/bin/clang++
-      #sudo ln -sf /usr/bin/llvm-ar-9 /usr/bin/ar
-      #sudo ln -sf /usr/bin/llvm-ranlib-9 /usr/bin/ranlib
 
       sudo ln -sf /usr/bin/gcc-9 /usr/bin/gcc
       sudo ln -sf /usr/bin/g++-9 /usr/bin/g++
       sudo ln -sf /usr/bin/gcc-ar-9 /usr/bin/gcc-ar
       sudo ln -sf /usr/bin/gcc-nm-9 /usr/bin/gcc-nm
       sudo ln -sf /usr/bin/gcc-ranlib-9 /usr/bin/gcc-ranlib
-      #sudo ln -sf /usr/bin/gcc-ar-9 /usr/bin/ar
-      #sudo ln -sf /usr/bin/gcc-nm-9 /usr/bin/nm
-      #sudo ln -sf /usr/bin/gcc-ranlib-9 /usr/bin/ranlib
 
       # Set environment variables
       export SHELL=/bin/bash
@@ -100,13 +86,13 @@ jobs:
       contents: '*.tar.bz2'
       targetFolder: $(Build.ArtifactStagingDirectory)
 
-      #- task: GitHubRelease@0
-      #inputs:
-      #action: create
-      #gitHubConnection: for-firefox-release
-      #repositoryName: santouits/firefox-builder
-      #tagSource: manual
-      #tag: $(Build.BuildNumber)
-      #addChangeLog: false
-      #assets: $(Build.ArtifactStagingDirectory)/**
-      #displayName: 'create_github_release'
+  - task: GitHubRelease@0
+    inputs:
+      action: create
+      gitHubConnection: for-firefox-release
+      repositoryName: santouits/firefox-builder
+      tagSource: manual
+      tag: $(Build.BuildNumber)
+      addChangeLog: false
+      assets: $(Build.ArtifactStagingDirectory)/**
+    displayName: 'create_github_release'
