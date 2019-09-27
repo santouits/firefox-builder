@@ -7,8 +7,9 @@ mk_add_options MOZ_MAKE_FLAGS="-j3"
 #ac_add_options --disable-release
 ac_add_options --enable-linker=lld-9
 ac_add_options --enable-lto
-#ac_add_options --enable-optimize="-O3 -march=btver1 -mtune=btver1 -flto=full"
-ac_add_options --enable-optimize
+ac_add_options --enable-rust-simd
+ac_add_options --enable-optimize="-O3 -march=btver1 -mtune=btver1"
+#ac_add_options --enable-optimize
 ac_add_options --disable-debug
 ac_add_options --disable-rust-debug
 ac_add_options --disable-debug-symbols
